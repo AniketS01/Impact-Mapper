@@ -1,0 +1,21 @@
+{
+  "name": "impact-mapper",
+  "version": "1.0.0",
+  "description": "Static analysis dependency mapper for JavaScript codebases",
+  "main": "main.js",
+  "bin": {
+    "impact-mapper": "./main.js"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": ["static-analysis", "dependency-graph", "ast", "impact-analysis"],
+  "license": "MIT",
+  "dependencies": {
+    "@babel/parser": "^7.26.0",
+    "@babel/traverse": "^7.26.0",
+    "chalk": "^4.1.2",
+    "commander": "^12.1.0",
+    "glob": "^10.4.0"
+  }
+}
