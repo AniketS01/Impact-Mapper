@@ -1,15 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 
-/**
- * Resolve a JS import specifier to an actual file path.
- * Handles: relative paths, missing extensions, index files.
- *
- * @param {string} specifier - The import string (e.g. './utils', '../models')
- * @param {string} fromFile  - Absolute path of the importing file
- * @param {string} projectRoot - Absolute path of the project root
- * @returns {string|null} Resolved absolute file path, or null if unresolvable
- */
 function resolveImport(specifier, fromFile, projectRoot) {
     // Skip non-relative imports (node_modules, built-ins)
     if (!specifier.startsWith('.') && !specifier.startsWith('/')) {
@@ -46,13 +37,7 @@ function resolveImport(specifier, fromFile, projectRoot) {
     return null;
 }
 
-/**
- * Get the module name (relative to project root) from an absolute path.
- *
- * @param {string} filePath - Absolute file path
- * @param {string} projectRoot - Absolute path of the project root
- * @returns {string} Relative module name
- */
+
 function getModuleName(filePath, projectRoot) {
     return path.relative(projectRoot, filePath);
 }
