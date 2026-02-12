@@ -204,4 +204,4 @@ console.log(graph.edges); // [{ from: 'services.js', to: 'models.js', imports: [
 
 ## 📄 License
 
-MIT
+Apache license 2.0
