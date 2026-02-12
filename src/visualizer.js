@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
 
-// ── Terminal Output ────────────────────────────────────────
+// Terminal Output 
 
 const SEVERITY_COLORS = {
   NONE: chalk.green,
@@ -29,9 +29,9 @@ const REF_TYPE_COLORS = {
   reference: chalk.gray,
 };
 
-/**
- * Print the scan results (all entities) to the terminal.
- */
+
+ // Print the scan results (all entities) to the terminal.
+ 
 function printScanResults(entityMap, fileCount) {
   console.log();
   console.log(chalk.bold.white('  ╔══════════════════════════════════════╗'));
@@ -74,9 +74,9 @@ function printScanResults(entityMap, fileCount) {
   console.log(chalk.gray(`  Total: ${chalk.white.bold(totalEntities)} entities across ${chalk.white.bold(fileCount)} files\n`));
 }
 
-/**
- * Print the impact analysis results to the terminal.
- */
+
+ // Print the impact analysis results to the terminal.
+ 
 function printImpactResults(impact) {
   const { entity, references, affectedModules, severity } = impact;
   const colorFn = SEVERITY_COLORS[severity] || chalk.white;
@@ -146,15 +146,9 @@ function printImpactResults(impact) {
   );
 }
 
-// ── HTML Graph Output ──────────────────────────────────────
+//  HTML Graph Output 
 
-/**
- * Generate a self-contained HTML file with a D3.js interactive dependency graph.
- *
- * @param {{ nodes: object[], edges: object[] }} graph
- * @param {string} outputPath
- * @param {object} [impact] - Optional impact data to highlight affected nodes
- */
+
 function generateHtmlGraph(graph, outputPath, impact) {
   const highlightedNodes = new Set();
   let impactEntity = null;
