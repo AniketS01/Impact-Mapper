@@ -5,11 +5,9 @@ const traverse = require('@babel/traverse').default;
 const { globSync } = require('glob');
 const { resolveImport, getModuleName } = require('./resolver');
 
-// ── Parsing ────────────────────────────────────────────────
 
-/**
- * Parse a JS file into a Babel AST.
- */
+ //Parse a JS file into a Babel AST.
+ 
 function parseFile(filePath) {
     const code = fs.readFileSync(filePath, 'utf-8');
     return parser.parse(code, {
@@ -18,15 +16,9 @@ function parseFile(filePath) {
     });
 }
 
-// ── Entity Discovery ───────────────────────────────────────
+// Discover entities
 
-/**
- * Extract all declared entities (functions, classes, variables, exports)
- * from a single file's AST.
- *
- * @param {string} filePath - Absolute path
- * @returns {{ name: string, type: string, line: number, exported: boolean }[]}
- */
+
 function discoverEntities(filePath) {
     const ast = parseFile(filePath);
     const entities = [];
@@ -139,15 +131,9 @@ function discoverEntities(filePath) {
     return entities;
 }
 
-// ── Import Extraction ──────────────────────────────────────
+// Import Extraction
 
-/**
- * Extract all imports from a file (ES modules + CommonJS require).
- *
- * @param {string} filePath
- * @param {string} projectRoot
- * @returns {{ source: string, resolvedPath: string|null, importedNames: string[] }[]}
- */
+
 function extractImports(filePath, projectRoot) {
     const ast = parseFile(filePath);
     const imports = [];
@@ -203,17 +189,9 @@ function extractImports(filePath, projectRoot) {
     return imports;
 }
 
-// ── Reference Finding ──────────────────────────────────────
+// Reference Finding 
 
-/**
- * Find all references to `entityName` across the entire project.
- *
- * @param {string} entityName   - Name of the function/class/variable
- * @param {string} definedIn    - Absolute path where the entity is defined
- * @param {string[]} allFiles   - All JS files in the project
- * @param {string} projectRoot
- * @returns {{ file: string, line: number, column: number, type: string, code: string }[]}
- */
+
 function findReferences(entityName, definedIn, allFiles, projectRoot) {
     const references = [];
 
@@ -306,14 +284,8 @@ function findReferences(entityName, definedIn, allFiles, projectRoot) {
     return references;
 }
 
-// ── Dependency Graph ───────────────────────────────────────
+// Dependency Graph 
 
-/**
- * Build a full module-level dependency graph.
- *
- * @param {string} projectRoot
- * @returns {{ nodes: { id: string, file: string }[], edges: { from: string, to: string, imports: string[] }[] }}
- */
 function buildDependencyGraph(projectRoot) {
     const files = getAllJsFiles(projectRoot);
     const nodes = [];
@@ -339,11 +311,9 @@ function buildDependencyGraph(projectRoot) {
     return { nodes, edges };
 }
 
-// ── File Discovery ─────────────────────────────────────────
+// File Discovery 
 
-/**
- * Get all JS files in a project directory.
- */
+
 function getAllJsFiles(projectRoot) {
     const pattern = path.join(projectRoot, '**/*.{js,jsx,mjs,cjs}');
     return globSync(pattern, {
@@ -352,7 +322,7 @@ function getAllJsFiles(projectRoot) {
     });
 }
 
-// ── Main Analyzer Class ────────────────────────────────────
+// Main Analyzer Class 
 
 class ImpactAnalyzer {
     constructor(projectRoot) {
@@ -384,13 +354,7 @@ class ImpactAnalyzer {
         };
     }
 
-    /**
-     * Find an entity by name, optionally scoped to a file.
-     *
-     * @param {string} entityName
-     * @param {string} [fileName] - Relative file path to scope the search
-     * @returns {{ name: string, type: string, line: number, exported: boolean, module: string, absolutePath: string }|null}
-     */
+   
     findEntity(entityName, fileName) {
         for (const [moduleName, entities] of this.entityMap) {
             if (fileName && !moduleName.endsWith(fileName)) continue;
@@ -407,13 +371,7 @@ class ImpactAnalyzer {
         return null;
     }
 
-    /**
-     * Get the full impact of changing an entity.
-     *
-     * @param {string} entityName
-     * @param {string} [fileName]
-     * @returns {{ entity: object, references: object[], affectedModules: string[], severity: string }}
-     */
+   
     getImpact(entityName, fileName) {
         const entity = this.findEntity(entityName, fileName);
         if (!entity) {
@@ -451,9 +409,9 @@ class ImpactAnalyzer {
         };
     }
 
-    /**
-     * Build the full dependency graph.
-     */
+    
+     // Build the full dependency graph.
+     
     getDependencyGraph() {
         return buildDependencyGraph(this.projectRoot);
     }
