@@ -114,7 +114,7 @@ impact-mapper graph ./my-project -o deps.html
 Generates a self-contained HTML file with an interactive D3.js force-directed graph. Open in any browser — drag nodes, scroll to zoom, hover edges for import details.
 
 <p align="center">
-  <img src="assets/graph-preview.png" alt="Impact Mapper — Interactive Dependency Graph" width="700" />
+  <img src="https://raw.githubusercontent.com/AniketS01/Impact-Mapper/master/assets/graph-preview.png" alt="Impact Mapper — Interactive Dependency Graph" width="700" />
 </p>
 
 ---

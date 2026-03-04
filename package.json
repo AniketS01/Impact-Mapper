@@ -1,6 +1,6 @@
 {
   "name": "impact-mapper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Static analysis dependency mapper for JavaScript codebases — find what breaks before you break it",
   "main": "index.js",
   "bin": {
