@@ -30,21 +30,22 @@ You want to rename a function, change a class interface, or modify a utility —
 ## 🚀 Quick Start
 
 ```bash
-# Clone the repo
-git clone <your-repo-url> impact-mapper
-cd impact-mapper
+# Install globally
+npm install -g impact-mapper
 
-# Install dependencies
-npm install
+# Or use npx without installing
+npx impact-mapper scan ./my-project
+```
 
+```bash
 # Scan your project
-node main.js scan /path/to/your/js/project
+impact-mapper scan /path/to/your/js/project
 
 # Check impact of changing a function
-node main.js impact /path/to/your/js/project -e "myFunction" -f "myFile.js"
+impact-mapper impact /path/to/your/js/project -e "myFunction" -f "myFile.js"
 
 # Generate an interactive dependency graph
-node main.js graph /path/to/your/js/project -o graph.html
+impact-mapper graph /path/to/your/js/project -o graph.html
 ```
 
 ---
@@ -54,7 +55,7 @@ node main.js graph /path/to/your/js/project -o graph.html
 ### `scan` — Discover all entities
 
 ```bash
-node main.js scan ./my-project
+impact-mapper scan ./my-project
 ```
 
 Lists every function, class, and variable in the project, showing whether each is exported or local.
@@ -70,10 +71,10 @@ Lists every function, class, and variable in the project, showing whether each i
 
 ```bash
 # Basic usage
-node main.js impact ./my-project -e "calculateTotal" -f "utils.js"
+impact-mapper impact ./my-project -e "calculateTotal" -f "utils.js"
 
 # With HTML graph output
-node main.js impact ./my-project -e "User" -f "models.js" -o impact.html
+impact-mapper impact ./my-project -e "User" -f "models.js" -o impact.html
 ```
 
 | Option | Required | Description |
@@ -107,7 +108,7 @@ Output:
 ### `graph` — Export dependency graph
 
 ```bash
-node main.js graph ./my-project -o deps.html
+impact-mapper graph ./my-project -o deps.html
 ```
 
 Generates a self-contained HTML file with an interactive D3.js force-directed graph. Open in any browser — drag nodes, scroll to zoom, hover edges for import details.
@@ -167,7 +168,7 @@ impact-mapper/
 Use the analyzer directly in your own Node.js scripts:
 
 ```javascript
-const { ImpactAnalyzer } = require('./src/analyzer');
+const { ImpactAnalyzer } = require('impact-mapper');
 
 const analyzer = new ImpactAnalyzer('./my-project');
 analyzer.scan();

@@ -1,16 +1,45 @@
 {
   "name": "impact-mapper",
   "version": "1.0.0",
-  "description": "Static analysis dependency mapper for JavaScript codebases",
-  "main": "main.js",
+  "description": "Static analysis dependency mapper for JavaScript codebases — find what breaks before you break it",
+  "main": "index.js",
   "bin": {
-    "impact-mapper": "./main.js"
+    "impact-mapper": "main.js"
   },
+  "files": [
+    "main.js",
+    "index.js",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.js",
+    "test": "echo \"No tests yet\" && exit 0"
   },
-  "keywords": ["static-analysis", "dependency-graph", "ast", "impact-analysis"],
+  "keywords": [
+    "static-analysis",
+    "dependency-graph",
+    "ast",
+    "impact-analysis",
+    "javascript",
+    "babel",
+    "refactoring",
+    "dependencies"
+  ],
+  "author": "Aniket",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AniketS01/Impact-Mapper.git"
+  },
+  "homepage": "https://github.com/AniketS01/Impact-Mapper#readme",
+  "bugs": {
+    "url": "https://github.com/AniketS01/Impact-Mapper/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@babel/parser": "^7.26.0",
     "@babel/traverse": "^7.26.0",

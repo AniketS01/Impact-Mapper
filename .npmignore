@@ -1,0 +1,9 @@
+# Development & testing
+sample_project/
+docs/
+.git/
+.gitignore
+.gemini/
+
+# Dependencies (npm install handles this)
+node_modules/
