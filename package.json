@@ -1,6 +1,6 @@
 {
   "name": "impact-mapper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Static analysis dependency mapper for JavaScript codebases — find what breaks before you break it",
   "main": "index.js",
   "bin": {
@@ -45,6 +45,6 @@
     "@babel/traverse": "^7.26.0",
     "chalk": "^4.1.2",
     "commander": "^12.1.0",
-    "glob": "^10.4.0"
+    "glob": "^11.0.0"
   }
 }
